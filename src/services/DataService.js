@@ -27,7 +27,7 @@ class DataService {
 
   async getData() {
     try {
-      const response = http.get('/getData');
+      const response = await http.get('/getData');
       return response.data;
     } catch (error) {
       console.error('Error getting data: ', error.response.data);
@@ -37,7 +37,7 @@ class DataService {
 
   async generateRightTable() {
     try {
-      const response = http.get('/generateRightTable');
+      const response = await http.get('/generateRightTable');
       return response.data;
     } catch (error) {
       console.error('Error generating right table: ', error.response.data);
@@ -47,7 +47,7 @@ class DataService {
 
   async viewCard(id) {
     try {
-      const response = http.get(`/viewCard/${id}`);
+      const response = await http.get(`/viewCard/${id}`);
       return response.data;
     } catch (error) {
       console.error('Error viewing card: ', error.response.data);
@@ -57,7 +57,7 @@ class DataService {
 
   async saveData() {
     try {
-      const response = http.put('saveData');
+      const response = await http.put('saveData');
       return response.data;
     } catch (error) {
       console.error('Error saving data: ', error.response.data);

@@ -215,6 +215,7 @@ const Forms = () => {
               flexDirection: 'column',
               alignItems: 'flex-start',
               justifyContent: 'flex-start',
+              overflowY: 'auto',
             }}
           >
             {dataSaved.deleteCounts && (
