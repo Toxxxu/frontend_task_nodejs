@@ -57,7 +57,7 @@ class DataService {
 
   async saveData() {
     try {
-      const response = await http.put('saveData');
+      const response = await http.put('/saveData');
       return response.data;
     } catch (error) {
       console.error('Error saving data: ', error.response.data);

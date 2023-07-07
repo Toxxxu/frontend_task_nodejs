@@ -28,7 +28,7 @@ const Forms = () => {
     } catch (error) {
       console.error('Error sending data: ', error);
     }
-  }
+  };
 
   const handleClearDB = async () => {
     try {
@@ -38,7 +38,7 @@ const Forms = () => {
     } catch (error) {
       console.error('Error clearing data: ', error);
     }
-  }
+  };
 
   const handlePatientChange = (event) => {
     const lines = event.target.value.split('\n');
@@ -84,7 +84,7 @@ const Forms = () => {
       return patientData;
     });
     setPatients(patientsData);
-  }
+  };
 
   const handleDoctorChange = (event) => {
     const lines = event.target.value.split('\n');
@@ -130,7 +130,7 @@ const Forms = () => {
       return doctorData;
     });
     setDoctors(doctorsData);
-  }
+  };
 
   const handleAppointmentChange = (event) => {
     const lines = event.target.value.split('\n');
@@ -160,7 +160,7 @@ const Forms = () => {
       return appointmentData;
     });
     setAppointments(appointmentsData);
-  }
+  };
 
   const handleClose = () => {
     setDataSaved(null);
