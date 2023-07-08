@@ -111,8 +111,8 @@ const Tables = () => {
   return (
     <div>
       <div style={{ display: 'flex' }}>
-        <TableContainer component={Paper} sx={{ maxWidth: 500, background: 'grey', margin: '2rem' }}>
-          <Table sx={{ maxWidth: 650, background: 'grey' }}>
+        <TableContainer component={Paper} sx={{ maxWidth: 500, margin: '2rem' }}>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Patient ID</TableCell>
@@ -134,8 +134,8 @@ const Tables = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <TableContainer component={Paper} sx={{ maxWidth: 500, background: 'grey', margin: '2rem' }}>
-          <Table sx={{ background: 'grey' }}>
+        <TableContainer component={Paper} sx={{ maxWidth: 500, margin: '2rem' }}>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Patient ID</TableCell>
