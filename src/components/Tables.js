@@ -43,6 +43,10 @@ const Tables = () => {
       }
     };
     fetchAppointments();
+
+    const interval = setInterval(fetchAppointments, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -70,6 +74,13 @@ const Tables = () => {
 
     fetchRightTable();
     fetchColorCounts();
+
+    const interval = setInterval(() => {
+      fetchRightTable();
+      fetchColorCounts();
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleSave = async () => {
@@ -99,53 +110,55 @@ const Tables = () => {
 
   return (
     <div>
-      <TableContainer component={Paper} sx={{ maxWidth: 650, background: 'grey' }}>
-        <Table sx={{ maxWidth: 650, background: 'grey' }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Patient ID</TableCell>
-              <TableCell>Doctor ID</TableCell>
-              <TableCell>Visiting Hour</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {appointments1.map((appointment) => (
-              <TableRow
-                key={appointment.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 }, background: appointment.color }}
-              >
-                <TableCell>{appointment.patientId}</TableCell>
-                <TableCell>{appointment.doctorId}</TableCell>
-                {appointment.hour && (<TableCell>{appointment.hour}</TableCell>)}
+      <div style={{ display: 'flex' }}>
+        <TableContainer component={Paper} sx={{ maxWidth: 500, background: 'grey', margin: '2rem' }}>
+          <Table sx={{ maxWidth: 650, background: 'grey' }}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Patient ID</TableCell>
+                <TableCell>Doctor ID</TableCell>
+                <TableCell>Visiting Hour</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TableContainer component={Paper} sx={{ maxWidth: 650, background: 'grey'}}>
-        <Table sx={{ background: 'grey' }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Patient ID</TableCell>
-              <TableCell>Doctor ID</TableCell>
-              <TableCell>Visiting Hour</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {appointments2.map((appointment) => (
-              <TableRow
-                key={appointment.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 }, background: appointment.color }}
-              >
-                <TableCell>{appointment.patientId}</TableCell>
-                <TableCell>{appointment.doctorId}</TableCell>
-                <TableCell>{appointment.hour}</TableCell>
-                <TableCell><Button variant="contained" endIcon={<VisibilityIcon />} onClick={() => handleView(appointment._id)}>View Card</Button></TableCell>
+            </TableHead>
+            <TableBody>
+              {appointments1.map((appointment) => (
+                <TableRow
+                  key={appointment.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 }, background: appointment.color }}
+                >
+                  <TableCell>{appointment.patientId}</TableCell>
+                  <TableCell>{appointment.doctorId}</TableCell>
+                  {appointment.hour && (<TableCell>{appointment.hour}</TableCell>)}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TableContainer component={Paper} sx={{ maxWidth: 500, background: 'grey', margin: '2rem' }}>
+          <Table sx={{ background: 'grey' }}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Patient ID</TableCell>
+                <TableCell>Doctor ID</TableCell>
+                <TableCell>Visiting Hour</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {appointments2.map((appointment) => (
+                <TableRow
+                  key={appointment.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 }, background: appointment.color }}
+                >
+                  <TableCell>{appointment.patientId}</TableCell>
+                  <TableCell>{appointment.doctorId}</TableCell>
+                  <TableCell>{appointment.hour}</TableCell>
+                  <TableCell><Button variant="contained" endIcon={<VisibilityIcon />} onClick={() => handleView(appointment._id)}>View Card</Button></TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
       {colorCounts && (
         <div>
           {colorCounts.green > 0 && (colorCounts.green < 10 ? (colorCounts.green === 1 ? `${numbers[colorCounts.green]} green appointment. ` : `${numbers[colorCounts.green]} green appointments. `) : (`${colorCounts.green} green appointments. `))}
@@ -180,7 +193,7 @@ const Tables = () => {
           </IconButton>
         </Paper>
       )}
-      <Button variant="outlined" onclick={handleSave}>Save Data</Button>
+      <Button variant="outlined" onClick={handleSave} sx={{ marginTop: '2rem'}}>Save Data</Button>
     </div>
   )
 }
